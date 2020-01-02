@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tile} from '../components/tile';
+import {Tile} from '../tile/Tile';
 
 interface Props {
     shows: any;
