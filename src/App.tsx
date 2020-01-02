@@ -1,21 +1,28 @@
 import React, { ChangeEvent } from 'react';
-import { Header } from './components/header/Header';
-import { List } from './components/list/List';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import { Redirect } from 'react-router';
+import { Home } from './routes/Home';
+import { Show } from './routes/Show';
 import './App.css';
 
-interface Props{};
+interface Props {
+
+};
 
 interface State {
   q: string,
-  shows: any
+  shows: any,
+  id: number,
 }
 
 class App extends React.Component<Props, State> {
 
   state = {
     q: '',
-    shows: []
+    shows: [],
+    id: 0
   }
+
   handleSearchChange = (event: any) => {
     
     const query = event.target.value;
@@ -30,16 +37,29 @@ class App extends React.Component<Props, State> {
   }
 
   render(){
-    const { q, shows } = this.state;
+    const { q, shows, id } = this.state;
     return(
-      <div className="App">
-        <Header handleSearchChange={this.handleSearchChange} q={q} />
-        <List shows={shows}/>
-      </div>
-
-    )
+      <Router>
+          <Switch>
+            <Route path="/home">
+              <Home
+                q={q}
+                shows={shows}
+                handleSearchChange={this.handleSearchChange}
+                />
+            </Route>
+            <Route path="/show/:id">
+              <Show
+                q={q}
+                shows={shows}
+                id={id}
+                />
+            </Route>
+            <Redirect to="/home" />
+          </Switch>
+      </Router>
+    );
   }
-
 }
 
 export default App;
