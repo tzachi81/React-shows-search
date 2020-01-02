@@ -1,5 +1,5 @@
 import React, { ReactElement, ChangeEvent } from 'react';
-import '../css/header.css';
+import './header.css'
 
 interface Props {
     q: string,

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Tile} from '../tile/Tile';
+import './list.css'
 
 interface Props {
     shows: any;
