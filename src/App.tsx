@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { ChangeEvent } from 'react';
+import { Header } from './components/header';
+import { List } from './components/list';
 import './App.css';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface Props{};
+
+interface State {
+  q: string,
+  shows: any
+}
+
+class App extends React.Component<Props, State> {
+
+  state = {
+    q: '',
+    shows: []
+  }
+  handleSearchChange = (event: any) => {
+    
+    const query = event.target.value;
+    this.setState({q: query});
+
+    fetch(`http://api.tvmaze.com/search/shows?q=${query}`)
+    .then( res => res.json())
+    .then( data => {
+      this.setState({ shows: data })
+    })
+
+  }
+
+  render(){
+    const { q, shows } = this.state;
+    return(
+      <div className="App">
+        <Header handleSearchChange={this.handleSearchChange} q={q} />
+        <List shows={shows}/>
+      </div>
+
+    )
+  }
+
 }
 
 export default App;
