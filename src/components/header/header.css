@@ -1,1 +1,15 @@
+.header{
+    grid-column: 2/16;
+}
 
+.search {
+    width: 30%;
+}
+
+.search input{
+    width: 100%;
+}
+
+.search input:placeholder-shown {
+    border: 2px solid silver;
+}

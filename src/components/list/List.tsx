@@ -1,5 +1,7 @@
 import React from 'react';
 import {Tile} from '../tile/Tile';
+import './list.css';
+import placeHolderTile from '../../assets/tile_placeholder.jpg'
 
 interface Props {
     shows: any;
@@ -7,13 +9,17 @@ interface Props {
 
 export const List: React.FC<Props> = ({ shows }) => {
     return (
-        <div className="list">
+        <div className="list ui link cards">
             {shows.map( (showItem: any) => (
-                <div key={showItem.show.id}>
-                    <Tile 
-                        name={showItem.show.name} 
-                        pic={showItem.show.image? showItem.show.image.medium: ''}/>
-                </div>
+                <Tile 
+                    key={showItem.show.id}
+                    name={showItem.show.name} 
+                    pic={showItem.show.image? showItem.show.image.medium: placeHolderTile}
+                    type={showItem.show.type}
+                    language={showItem.show.language}
+                    summary={showItem.show.summary}
+                    url={showItem.show.url}
+                    />
             ))}
         </div>
     );
