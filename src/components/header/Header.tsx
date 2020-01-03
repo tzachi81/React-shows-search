@@ -9,7 +9,7 @@ interface Props {
 export const Header: React.FC<Props> = ({q, handleSearchChange}) => {
     return (
         <div className="header">
-            <div>
+            <div className="search ui input">
                 <input
                     type="search"
                     placeholder="search..."

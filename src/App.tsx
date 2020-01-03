@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router';
-import { Home } from './routes/Home';
+import { Home } from './routes/home_route/Home';
 import { Show } from './routes/Show';
 import './App.css';
 

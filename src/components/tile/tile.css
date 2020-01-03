@@ -1,0 +1,13 @@
+.description{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a, a:hover{
+    margin-left: .4%;
+    margin-bottom: 1.5%;
+    padding-left: .2%;
+    text-decoration: none;
+    color: black;
+}
