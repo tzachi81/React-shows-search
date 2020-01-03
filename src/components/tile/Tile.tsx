@@ -29,6 +29,7 @@ export const Tile:React.FC<Props> = ({pic, name, type, language, summary, url}) 
                     </div>
                     <div className="extra content">
                     <span className="right floated">
+                        <i className="tag icon"></i>
                         {type}
                         </span>
                         <i className="assistive listening systems icon"></i>
