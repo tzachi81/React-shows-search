@@ -14,9 +14,9 @@ export const Header: React.FC<Props> = ({ q, handleSearchChange }) => {
           Search TV Shows And Movies
           <div className="sub header">
             <span>
-              Powered by{" "}
+              Powered by&nbsp;
               <a href="http://api.tvmaze.com">
-                http://api.tvmaze.com/search/shows
+                https://api.tvmaze.com
               </a>
             </span>
           </div>
