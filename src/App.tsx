@@ -1,62 +1,51 @@
-import React, { ChangeEvent } from 'react';
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
-import { Redirect } from 'react-router';
-import { Home } from './routes/home_route/Home';
-import { Show } from './routes/Show';
-import './App.css';
+import React, { ChangeEvent } from "react";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { Home } from "./routes/home_route/Home";
+import { Show } from "./routes/Show";
+import "./App.css";
 
-interface Props {
-
-};
+interface Props {}
 
 interface State {
-  q: string,
-  shows: any,
-  id: number,
+  q: string;
+  shows: any;
+  id: number;
 }
 
 class App extends React.Component<Props, State> {
-
   state = {
-    q: '',
+    q: "",
     shows: [],
-    id: 0
-  }
+    id: 0,
+  };
 
   handleSearchChange = (event: any) => {
-    
     const query = event.target.value;
-    this.setState({q: query});
+    this.setState({ q: query });
 
     fetch(`http://api.tvmaze.com/search/shows?q=${query}`)
-    .then( res => res.json())
-    .then( data => {
-      this.setState({ shows: data })
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({ shows: data });
+      });
+  };
 
-  }
-
-  render(){
+  render() {
     const { q, shows, id } = this.state;
-    return(
+    return (
       <Router>
-          <Switch>
-            <Route path="/home">
-              <Home
-                q={q}
-                shows={shows}
-                handleSearchChange={this.handleSearchChange}
-                />
-            </Route>
-            <Route path="/show/:id">
-              <Show
-                q={q}
-                shows={shows}
-                id={id}
-                />
-            </Route>
-            <Redirect to="/home" />
-          </Switch>
+        <Routes>
+          <Route
+            path="/"
+            element={<Home q={q} shows={shows} handleSearchChange={this.handleSearchChange}/>}
+          />
+          <Route
+            path="/show/:id"
+            element={<Show q={q} shows={shows} id={id} />}
+          />
+            <Route path="/home" element={<Navigate to="/" />} />
+        </Routes>
       </Router>
     );
   }
