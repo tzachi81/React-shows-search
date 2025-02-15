@@ -1,7 +1,24 @@
+.card{
+    font-family: sans-serif;
+    margin: 7px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding: 17px;
+    height: auto; /* Allow height to expand */
+}
+.header{
+    font-weight: bold;
+    font-size: 20px;
+}
 .description{
-    white-space: nowrap;
-    overflow: hidden;
+    display: inline;
+    line-clamp: 5;
+    -webkit-line-clamp: 5;
     text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
 }
 
 a, a:hover{
@@ -10,4 +27,16 @@ a, a:hover{
     padding-left: .2%;
     text-decoration: none;
     color: black;
+}
+
+.meta{
+    font-style: italic;
+}
+
+.extra.content {
+    padding-top: 7px;
+
+    span {
+        margin-right: 7px;
+    }
 }

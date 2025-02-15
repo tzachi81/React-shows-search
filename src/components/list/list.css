@@ -1,5 +1,10 @@
 .list {
-    grid-column: 2/16;
+    /* grid-column: 2/16;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); */
+    grid-column: 2 / 16; /* Adjust the grid column as needed */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    gap: 10px; /* Space between items */
+    
 }

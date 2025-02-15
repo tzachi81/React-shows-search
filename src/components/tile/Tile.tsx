@@ -30,16 +30,16 @@ export const Tile: React.FC<Props> = ({
             <img src={pic} alt={name} />
           </div>
           <div className="meta">
-            <span className="date">{type}</span>
-            <span className="date"> ({language})</span>
+            <span className="metaType">{type}</span>
+            <span className="metaLang"> {language}</span>
           </div>
           <div className="description">{parsedSummary}</div>
         </div>
-        <div className="extra content">
+        {/* <div className="extra content">
           <span className="right floated">{type}</span>
           <i className="assistive listening systems icon"></i>
           {language}
-        </div>
+        </div> */}
       </div>
     </a>
   );
