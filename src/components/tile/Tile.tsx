@@ -1,5 +1,5 @@
+import './tile.css';
 import React from "react";
-import "./tile.css";
 
 interface Props {
   name: string;
@@ -22,25 +22,20 @@ export const Tile: React.FC<Props> = ({
   var parsedSummary = parser.parseFromString(summary, "text/html").children[0]
     .textContent;
   return (
-    <a href={url} target="_blank">
-      <div className="ui card">
-        <div className="content">
-          <div className="header">{name}</div>
-          <div className="image">
+    <div className="ui card ">
+      <div className="content">
+        <div className="header">{name}</div>
+        <div className="image">
+          <a href={url} target="_blank">
             <img src={pic} alt={name} />
-          </div>
-          <div className="meta">
-            <span className="metaType">{type}</span>
-            <span className="metaLang"> {language}</span>
-          </div>
-          <div className="description">{parsedSummary}</div>
+          </a>
         </div>
-        {/* <div className="extra content">
-          <span className="right floated">{type}</span>
-          <i className="assistive listening systems icon"></i>
-          {language}
-        </div> */}
+        <div className="meta">
+          <span>{type}</span>
+          <span> {language}</span>
+        </div>
+        <div className="description">{parsedSummary}</div>
       </div>
-    </a>
+    </div>
   );
 };

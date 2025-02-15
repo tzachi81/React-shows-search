@@ -11,7 +11,8 @@ interface Props{
  
 export const Home:React.FC<Props> = ({q, shows, handleSearchChange}) => {
     return(
-        <div className="home">
+        // <div className="home">
+        <div className="ui center aligned container">
             <Header handleSearchChange={handleSearchChange} q={q} />
             <List shows={shows}/>
         </div>
