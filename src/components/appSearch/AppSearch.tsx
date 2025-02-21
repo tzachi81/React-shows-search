@@ -1,25 +1,28 @@
 import React from "react";
+import { Search, SearchProps } from "semantic-ui-react";
 
 interface ISearchProps {
   searchValue: string;
   handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Search: React.FC<ISearchProps> = ({
+export const AppSearch: React.FC<ISearchProps> = ({
   searchValue,
   handleSearchChange,
 }) => {
   return (
-    <div className="ui category search">
+    <div className="ui search">
       <div className="ui icon input">
         <input
           type="text"
-          className="prompt"
-          placeholder="search..."
+          autoComplete="off"
           value={searchValue}
+          placeholder="Search..."
+          tabIndex={0}
+          className="prompt"
           onChange={handleSearchChange}
         />
-        <i className="search icon"></i>
+        <i aria-hidden="true" className="search icon"></i>
       </div>
     </div>
   );

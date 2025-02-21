@@ -1,41 +1,39 @@
-import './tile.css';
+import placeHolderTile from "../../assets/tile_placeholder.jpg";
+import {
+  Button,
+  Card,
+  CardGroup,
+  GridColumn
+} from "semantic-ui-react";
+import "./tile.css";
 import React from "react";
+import { IShowDetails } from "../../types";
 
 interface Props {
-  name: string;
-  pic: string;
-  type: string;
-  language: string;
-  summary: string;
-  url: string;
+  show: IShowDetails
 }
 
-export const Tile: React.FC<Props> = ({
-  pic,
-  name,
-  type,
-  language,
-  summary,
-  url,
-}) => {
-  var parser = new DOMParser();
-  var parsedSummary = parser.parseFromString(summary, "text/html").children[0]
+export const Tile: React.FC<Props> = ({show}) => {
+
+const {name, image, type, language, summary, url, rating } = show;
+
+
+  const parser = new DOMParser();
+  const parsedSummary = parser.parseFromString(summary, "text/html").children[0]
     .textContent;
   return (
-    <div className="ui card ">
-      <div className="content">
-        <div className="header">{name}</div>
-        <div className="image">
-          <a href={url} target="_blank">
-            <img src={pic} alt={name} />
-          </a>
-        </div>
-        <div className="meta">
-          <span>{type}</span>
-          <span> {language}</span>
-        </div>
-        <div className="description">{parsedSummary}</div>
-      </div>
-    </div>
+    <GridColumn>
+      <CardGroup>
+        <Card
+          image={image?.medium || placeHolderTile}
+          header={name}
+          meta={` ${rating?.average ? `Rating ${rating.average}` : 'Not rated'} `}
+          description={parsedSummary}
+          extra={` ${type} (${language})`}
+          href={url}
+          link
+        />
+      </CardGroup>
+    </GridColumn>
   );
 };

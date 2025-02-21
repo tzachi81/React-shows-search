@@ -1,4 +1,15 @@
-.description{
+.cardWrapper .card .content .header{
+  display: inline;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  height: 47px;
+}
+.card .description {
+  height: 100px;
   display: inline;
   line-clamp: 5;
   -webkit-line-clamp: 5;
