@@ -1,6 +1,6 @@
 .home{
-    margin: 1.5% auto;
+    margin: 0 auto;
     display: grid;
-    grid-row-gap: 1.5em;
+    grid-row-gap: 10px;
     grid-template-columns: repeat(12, 3fr);
 }

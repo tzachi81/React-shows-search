@@ -7,51 +7,14 @@ import "./App.css";
 
 interface Props {}
 
-interface State {
-  q: string;
-  shows: any;
-  id: number;
-}
-
-class App extends React.Component<Props, State> {
-  state = {
-    q: "",
-    shows: [],
-    id: 0,
-  };
-
-  handleSearchChange = (event: any) => {
-    const query = event.target.value;
-    this.setState({ q: query });
-
-    fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({ shows: data });
-      });
-  };
-
+class App extends React.Component<Props> {
   render() {
-    const { q, shows, id } = this.state;
     return (
       <div className="app">
         <Router>
           <div className="ui container segment">
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <Home
-                    q={q}
-                    shows={shows}
-                    handleSearchChange={this.handleSearchChange}
-                  />
-                }
-              />
-              <Route
-                path="/show/:id"
-                element={<Show q={q} shows={shows} id={id} />}
-              />
+              <Route path="/" element={<Home />} />
               <Route path="/home" element={<Navigate to="/" />} />
             </Routes>
           </div>

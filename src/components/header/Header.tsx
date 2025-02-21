@@ -1,11 +1,9 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 
-interface Props {
-  q: string;
-  handleSearchChange(q: ChangeEvent<HTMLInputElement>): void;
-}
+interface Props {}
 
-export const Header: React.FC<Props> = ({ q, handleSearchChange }) => {
+export const Header: React.FC<Props> = () => {
+
   return (
     <div className="ui container ">
       <h2 className="ui header">
@@ -15,28 +13,11 @@ export const Header: React.FC<Props> = ({ q, handleSearchChange }) => {
           <div className="sub header">
             <span>
               Powered by&nbsp;
-              <a href="http://api.tvmaze.com">
-                https://api.tvmaze.com
-              </a>
+              <a href="http://api.tvmaze.com">https://api.tvmaze.com</a>
             </span>
           </div>
         </div>
       </h2>
-
-      <div className="ui category search">
-        <div className="ui icon input">
-          <input
-            type="text"
-            className="prompt"
-            placeholder="search..."
-            value={q}
-            onChange={handleSearchChange}
-          />
-          <i className="search icon"></i>
-        </div>
-      
-      </div>
-      
     </div>
   );
 };
