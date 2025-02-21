@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Header } from "../../components/header/Header";
+import { AppHeader } from "../../components/appHeader/AppHeader";
 import { List } from "../../components/list/List";
 import "../home_route/home.css";
 import { useDebounce } from "../../hooks/useDebounce";
-import { Search } from "../../components/search/Search";
+import { AppSearch } from "../../components/appSearch/AppSearch";
+import { Container, Segment } from "semantic-ui-react";
+import { IShow } from "../../types";
 
 interface Props {}
 
@@ -21,15 +23,29 @@ export const Home: React.FC<Props> = () => {
       const apiBase = "https://api.tvmaze.com/search/shows?";
       fetch(`${apiBase}q=${debouncedValue}`)
         .then((res) => res.json())
-        .then((data) => setShows(data));
+        .then((data: IShow[]) => {
+            const orderByScore = data.sort((a,b) => b.score-a.score)
+            setShows(orderByScore)
+    });
     }
   }, [debouncedValue, setSearchValue]);
 
   return (
-    <div className="ui container">
-      <Header />
-      <Search searchValue={searchValue} handleSearchChange={handleSearchChange}/>
-      {Object.keys(shows).length > 0 && <List shows={shows} />}
-    </div>
+    // <Container className="ui centered">
+        <Segment>
+      <AppHeader />
+
+      <AppSearch
+        searchValue={searchValue}
+        handleSearchChange={handleSearchChange}
+      />
+
+      {Object.keys(shows).length > 0 && (
+        <Container className="ui fluid">
+          <List shows={shows} />
+        </Container>
+      )}
+      </Segment>
+      //{/* </Container> */}
   );
 };
