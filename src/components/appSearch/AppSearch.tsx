@@ -1,5 +1,5 @@
 import React from "react";
-import { Search, SearchProps } from "semantic-ui-react";
+import "./appSearch.css";
 
 interface ISearchProps {
   searchValue: string;
@@ -14,6 +14,7 @@ export const AppSearch: React.FC<ISearchProps> = ({
     <div className="ui search">
       <div className="ui icon input">
         <input
+          autoFocus
           type="text"
           autoComplete="off"
           value={searchValue}

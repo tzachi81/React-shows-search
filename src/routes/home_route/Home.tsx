@@ -4,14 +4,17 @@ import { List } from "../../components/list/List";
 import "../home_route/home.css";
 import { useDebounce } from "../../hooks/useDebounce";
 import { AppSearch } from "../../components/appSearch/AppSearch";
-import { Container, Segment } from "semantic-ui-react";
+import {
+  Grid,
+  GridRow,
+} from "semantic-ui-react";
 import { IShow } from "../../types";
 
 interface Props {}
 
 export const Home: React.FC<Props> = () => {
   const [searchValue, setSearchValue] = useState<string>("");
-  const debouncedValue = useDebounce(searchValue, 300); // 300ms delay
+  const debouncedValue = useDebounce(searchValue, 400);
   const [shows, setShows] = useState({});
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,28 +27,26 @@ export const Home: React.FC<Props> = () => {
       fetch(`${apiBase}q=${debouncedValue}`)
         .then((res) => res.json())
         .then((data: IShow[]) => {
-            const orderByScore = data.sort((a,b) => b.score-a.score)
-            setShows(orderByScore)
-    });
+          const orderByScore = data.sort((a, b) => b.score - a.score);
+          setShows(orderByScore);
+        });
     }
   }, [debouncedValue, setSearchValue]);
 
   return (
-    // <Container className="ui centered">
-        <Segment>
-      <AppHeader />
-
-      <AppSearch
-        searchValue={searchValue}
-        handleSearchChange={handleSearchChange}
-      />
-
-      {Object.keys(shows).length > 0 && (
-        <Container className="ui fluid">
-          <List shows={shows} />
-        </Container>
-      )}
-      </Segment>
-      //{/* </Container> */}
+    <Grid padded>
+      <GridRow>
+        <AppHeader />
+      </GridRow>
+      <GridRow>
+        <AppSearch
+          searchValue={searchValue}
+          handleSearchChange={handleSearchChange}
+        />
+      </GridRow>
+      <GridRow >
+      {Object.keys(shows).length > 0 && <List shows={shows} />}
+      </GridRow>
+    </Grid>
   );
 };
